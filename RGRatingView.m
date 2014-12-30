@@ -9,13 +9,17 @@
 #import "RGRatingView.h"
 
 @implementation RGRatingView
-
+{
+    UIColor *shadowColor;
+    UIColor *setColor;
+    UIColor *unsetColor;
+}
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if(self)
     {
-        
+        [self setDefaultColorValues];
     }
     return self;
 }
@@ -25,9 +29,18 @@
     self = [super initWithFrame:frame];
     if(self)
     {
-        
+        [self setDefaultColorValues];
     }
     return self;
+}
+
+
+- (void)setDefaultColorValues
+{
+    shadowColor = [UIColor blackColor];
+    setColor = [UIColor colorWithRed:241/255.0f green:196/255.0f blue:15/255.0f alpha:1.0f];
+    unsetColor = [UIColor colorWithRed:149/255.0f green:165/255.0f blue:166/255.0f alpha:1.0f];
+    
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -44,14 +57,14 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //// Color Declarations
-    UIColor* color = [UIColor colorWithRed: 0.514 green: 0.473 blue: 0.308 alpha: 1];
-    UIColor* color2 = [UIColor colorWithRed: 0.384 green: 0.518 blue: 0.652 alpha: 1];
-    UIColor* color3 = [UIColor colorWithRed: 0.5 green: 0.5 blue: 0.5 alpha: 1];
-    UIColor* color4 = [UIColor colorWithRed: 0.32 green: 0.356 blue: 0.8 alpha: 1];
-    UIColor* color5 = [UIColor colorWithRed: 0.8 green: 0.32 blue: 0.689 alpha: 1];
+    UIColor* color = unsetColor;
+    UIColor* color2 = unsetColor;
+    UIColor* color3 = unsetColor;
+    UIColor* color4 = setColor;
+    UIColor* color5 = setColor;
     
     //// Shadow Declarations
-    UIColor* shadow = UIColor.blackColor;
+    UIColor* shadow = shadowColor;
     CGSize shadowOffset = CGSizeMake(6.1, 4.1);
     CGFloat shadowBlurRadius = 5;
     

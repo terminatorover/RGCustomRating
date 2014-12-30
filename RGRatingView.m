@@ -60,9 +60,11 @@
 {
     CGPoint touchPoint = [sender locationInView:self];
     indexOfStar = [self indexFromTouchPoint:touchPoint];
-    
-    
-    
+    if(_delegate && [_delegate respondsToSelector:@selector(userSetRatingToIndex:)])
+    {
+        [_delegate userSetRatingToIndex:indexOfStar];
+    }
+        
     [self setNeedsDisplay];
 }
 
@@ -269,6 +271,23 @@
     CGContextRestoreGState(context);
 }
 
-
-
+//UIColor *shadowColor;
+//UIColor *setColor;
+//UIColor *unsetColor;
+#pragma mark - Color Modifications
+- (void)setShadowColor:(UIColor *)color
+{
+    shadowColor = color;
+    [self setNeedsDisplay];
+}
+- (void)setSelectedColor:(UIColor *)color
+{
+    setColor = color;
+    [self setNeedsDisplay];
+}
+- (void)setUnselectedColor:(UIColor *)color
+{
+    unsetColor = color;
+    [self setNeedsDisplay];
+}
 @end

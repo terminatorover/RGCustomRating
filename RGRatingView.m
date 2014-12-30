@@ -13,6 +13,7 @@
     UIColor *shadowColor;
     UIColor *setColor;
     UIColor *unsetColor;
+    UITapGestureRecognizer *tapGesture;
 }
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -20,6 +21,8 @@
     if(self)
     {
         [self setDefaultColorValues];
+        [self addTapGestureRecognizer];
+        
     }
     return self;
 }
@@ -30,6 +33,7 @@
     if(self)
     {
         [self setDefaultColorValues];
+        [self addTapGestureRecognizer];
     }
     return self;
 }
@@ -41,6 +45,49 @@
     setColor = [UIColor colorWithRed:241/255.0f green:196/255.0f blue:15/255.0f alpha:1.0f];
     unsetColor = [UIColor colorWithRed:149/255.0f green:165/255.0f blue:166/255.0f alpha:1.0f];
     
+}
+
+
+- (void)addTapGestureRecognizer
+{
+    tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
+    [self addGestureRecognizer:tapGesture];
+}
+
+- (void)tapped:(UITapGestureRecognizer *)sender
+{
+    CGPoint touchPoint = [sender locationInView:self];
+    NSInteger indexOfStar = [self indexFromTouchPoint:touchPoint];
+    
+    
+    
+    [self setNeedsDisplay];
+}
+
+#pragma mark - Convnience Method to get the
+- (NSInteger)indexFromTouchPoint:(CGPoint)point
+{
+    NSInteger touchPointX = point.x;
+    NSInteger touchPointY = point.y;
+    
+    if(touchPointX < (self.frame.size.width/5) )
+    {
+        return 1;
+    }else if ((touchPointX >= (self.frame.size.width/5)) && (touchPointX < (2 * self.frame.size.width/5)))
+    {
+        return 2;
+    }else if ((touchPointX >= (2 *self.frame.size.width/5)) && (touchPointX < (3 * self.frame.size.width/5)))
+    {
+        return 3;
+    }else if ((touchPointX >= ( 3* self.frame.size.width/5)) && (touchPointX < (4 * self.frame.size.width/5)))
+    {
+        return 4;
+    }else if ((touchPointX >= (4 *self.frame.size.width/5)) && (touchPointX < ( self.frame.size.width)))
+    {
+        return 5;
+    }
+    
+    return 1;
 }
 
 // Only override drawRect: if you perform custom drawing.

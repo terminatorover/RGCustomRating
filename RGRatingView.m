@@ -14,6 +14,7 @@
     UIColor *setColor;
     UIColor *unsetColor;
     UITapGestureRecognizer *tapGesture;
+    NSInteger indexOfStar;
 }
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -22,7 +23,7 @@
     {
         [self setDefaultColorValues];
         [self addTapGestureRecognizer];
-        
+        indexOfStar = 1;
     }
     return self;
 }
@@ -34,6 +35,7 @@
     {
         [self setDefaultColorValues];
         [self addTapGestureRecognizer];
+         indexOfStar = 1;
     }
     return self;
 }
@@ -57,7 +59,7 @@
 - (void)tapped:(UITapGestureRecognizer *)sender
 {
     CGPoint touchPoint = [sender locationInView:self];
-    NSInteger indexOfStar = [self indexFromTouchPoint:touchPoint];
+    indexOfStar = [self indexFromTouchPoint:touchPoint];
     
     
     
@@ -103,12 +105,55 @@
     //// General Declarations
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    //// Color Declarations
+    //// Color Declarations (TODO: Fix this later: this a dump implemenation )
     UIColor* color = unsetColor;
     UIColor* color2 = unsetColor;
     UIColor* color3 = unsetColor;
     UIColor* color4 = setColor;
     UIColor* color5 = setColor;
+    if(indexOfStar == 1)
+    {
+        color = setColor;
+        color2 = unsetColor;
+        color3 = unsetColor;
+        color4 = unsetColor;
+        color5 = unsetColor;
+    }else if (indexOfStar == 2)
+    {
+        color = setColor;
+        color2 = unsetColor;
+        color3 = setColor;
+        color4 = unsetColor;
+        color5 = unsetColor;
+    }
+    else if (indexOfStar == 3)
+    {
+        color = setColor;
+        color2 = setColor;
+        color3 = setColor;
+        color4 = unsetColor;
+        color5 = unsetColor;
+        
+    }
+    else if (indexOfStar == 4)
+    {
+        color = setColor;
+        color2 = setColor;
+        color3 = setColor;
+        color4 = setColor;
+        color5 = unsetColor;
+        
+    }
+    else if (indexOfStar == 5)
+    {
+        color = setColor;
+        color2 = setColor;
+        color3 = setColor;
+        color4 = setColor;
+        color5 = setColor;
+    }
+    
+ 
     
     //// Shadow Declarations
     UIColor* shadow = shadowColor;
@@ -223,5 +268,7 @@
     [star5Path fill];
     CGContextRestoreGState(context);
 }
+
+
 
 @end

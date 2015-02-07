@@ -107,7 +107,7 @@
     //// General Declarations
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    //// Color Declarations (TODO: Fix this later: this a dump implemenation )
+    //// Color Declarations 
     UIColor* color = unsetColor;
     UIColor* color2 = unsetColor;
     UIColor* color3 = unsetColor;
